@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'PISU_Auth/css/PISU_Auth.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h2>Login</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+
+    <button type="submit">Login</button>
+</form>
+<p>No tienes cuenta? <a href="{% url 'signup' %}">Regístrate aquí</a></p>
+{% endblock %}
+
