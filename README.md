@@ -30,7 +30,7 @@ A continuación, se presentarán imágenes de las posibles interfaces de la apli
 
 Esta es la vista contara con el nombre de la aplicación y su logo en la parte Izquierda sin ninguna función asignada solamente por motivos de estítica, en seguida de esto se localizan dos botones que tendrían una transición dependiendo de la vista a la que apunte, en la imagen mostrada la vista que se esta renderizando sera la del Anuario, y con la opción del foro justo abajo para poder hacer el cambio de vista. Después, se encuentra el buscador que sera un auxiliar para localizar publicaciones, generaciones, carreras o centros. Por ultimo tendremos el nombre del estudiante y su carrera alado de un icono con su foto de perfil que el podra definir.
 
-![Anuario.png](PISU%20Community%20Plataforma%20de%20Integracio%CC%81n%20Social%20U%2012ecacad32d780da861ce0aece6c3040/196921e2-ac84-491f-beaa-a7f4a95662d7.png)
+![Anuario.png](PISU\ Community\ Plataforma\ de\ Integración\ Social\ U\ 12ecacad32d780da861ce0aece6c3040/196921e2-ac84-491f-beaa-a7f4a95662d7.png)
 
 ### Barra de Navegación - Foro Vista
 
