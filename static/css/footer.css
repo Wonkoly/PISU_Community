@@ -1,0 +1,38 @@
+/* footer.css */
+
+/* footer.css */
+
+.footer {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 35px;
+}
+
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-links {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-left {
+    font-weight: bold;
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}

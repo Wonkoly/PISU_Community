@@ -1,1 +1,27 @@
-/* Estilos globales */
+/* global.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    width: 100%;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+}
+
+/* Opcional: para centrar el contenido de la página */
+header, main, footer {
+    margin: 0 auto;
+}
