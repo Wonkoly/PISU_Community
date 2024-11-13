@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ publicacion.titulo }}</h2>
+<p>{{ publicacion.descripcion }}</p>
+<p><small>Publicado por: {{ publicacion.creador }} el {{ publicacion.fecha_creacion }}</small></p>
+
+<h3>Comentarios</h3>
+<div>
+    {% for comentario in comentarios %}
+    <div class="comentario">
+        <p>{{ comentario.contenido }}</p>
+        <p><small>Por {{ comentario.usuario }} el {{ comentario.fecha_creacion }}</small></p>
+    </div>
+    {% endfor %}
+</div>
+
+<h3>Agregar un comentario</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Publicar Comentario</button>
+</form>
+{% endblock %}

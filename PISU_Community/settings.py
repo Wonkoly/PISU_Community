@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'PISU_Auth',
     #'PISU_Anuario',
-    #'PISU_Foro',
+    'PISU_Foro',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +128,14 @@ STATICFILES_DIRS = [
 
 # Lugar donde se recopilan todos los archivos estáticos (durante el deploy)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Para producción, si usas collectstatic
+
+
+LOGIN_REDIRECT_URL = 'foro'  # Cambia 'home' por la página principal de tu app
+LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_URL = '/auth/login/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

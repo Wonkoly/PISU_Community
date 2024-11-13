@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block content %}
+<div class="background-image">
+    <div class="welcome-container">
+        <h2>¡Bienvenido a PISUCommunity!</h2>
+        <p>Inicia sesión utilizando tu correo institucional para acceder a todos los recursos que PISUCommunity tiene para ofrecerte. Mantente conectado y aprovecha al máximo tu experiencia escolar.</p>
+        <!-- Botón de inicio de sesión con redirección -->
+        <button onclick="window.location.href='/auth/login/'">Inicia Sesión</button>
+    </div>
+</div>
+{% endblock %}
+
+
+

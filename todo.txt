@@ -1,0 +1,4 @@
++ Ver como haremos lo del foro
++ Arreglar apariencia del menu de bienvenida
++ Arreglar varra de navegacion
++ Hacer Funcionar el login
