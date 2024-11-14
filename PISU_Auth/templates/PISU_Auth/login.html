@@ -8,18 +8,36 @@
 {% block content %}
 <div class="auth-container">
     <div class="auth-header">
-        <img src="{% static 'PISU_Auth/images/user-icon.png' %}" alt="User icon" class="auth-user-icon">
+        <i class="fas fa-user-circle auth-user-icon"></i>
     </div>
     <h1>Iniciar Sesión</h1>
     <form method="post">
         {% csrf_token %}
+
+        <!-- Mostrar errores no relacionados a campos específicos -->
+        {% if form.non_field_errors %}
+            <div class="error">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="input-container">
             <span class="input-icon">👤</span>
             {{ form.username }}
+            {% if form.username.errors %}
+                <div class="error">
+                    {{ form.username.errors }}
+                </div>
+            {% endif %}
         </div>
         <div class="input-container">
             <span class="input-icon">🔒</span>
             {{ form.password }}
+            {% if form.password.errors %}
+                <div class="error">
+                    {{ form.password.errors }}
+                </div>
+            {% endif %}
         </div>
         <button type="submit" class="auth-button">Iniciar Sesión</button>
     </form>

@@ -1,0 +1,22 @@
+.profile-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.profile-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-container {
+    margin-bottom: 15px;
+}

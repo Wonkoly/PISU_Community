@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'PISU_Auth/css/PISU_Auth_Perfil.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>Mi Perfil</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="input-container">
+            <label for="username">Nombre de usuario:</label>
+            {{ form.username }}
+        </div>
+
+        <div class="input-container">
+            <label for="email">Correo electrónico:</label>
+            {{ form.email }}
+        </div>
+
+        <div class="input-container">
+            <label for="foto_perfil">Foto de perfil:</label>
+            {{ form.foto_perfil }}
+        </div>
+
+        <button type="submit" class="profile-button">Actualizar Perfil</button>
+    </form>
+</div>
+{% endblock %}

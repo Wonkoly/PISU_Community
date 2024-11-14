@@ -8,25 +8,79 @@
 {% block content %}
 <div class="auth-container">
     <div class="auth-header">
-        <img src="{% static 'PISU_Auth/images/user-icon.png' %}" alt="User icon" class="auth-user-icon">
+        <i class="fas fa-user-circle auth-user-icon"></i>
     </div>
     <h1>Registro</h1>
     <form method="post">
         {% csrf_token %}
+
+        <!-- Mostrar errores no relacionados a campos específicos -->
+        {% if form.non_field_errors %}
+            <div class="error">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <!-- Nombre de usuario -->
         <div class="input-container">
             <span class="input-icon">👤</span>
             {{ form.username }}
+            {% if form.username.errors %}
+                <div class="error">
+                    {{ form.username.errors }}
+                </div>
+            {% endif %}
         </div>
+
+        <!-- Nombre completo -->
+        <div class="input-container">
+            <span class="input-icon">📛</span>
+            {{ form.full_name }}
+            {% if form.full_name.errors %}
+                <div class="error">
+                    {{ form.full_name.errors }}
+                </div>
+            {% endif %}
+        </div> 
+
+        <!-- Correo electrónico -->
         <div class="input-container">
             <span class="input-icon">📧</span>
             {{ form.email }}
+            {% if form.email.errors %}
+                <div class="error">
+                    {{ form.email.errors }}
+                </div>
+            {% endif %}
+            <p class="hint">Debe ser un correo con dominio @academicos.udg.mx, @cuc.udg.mx o @alumnos.udg.mx</p>
         </div>
+
+        <!-- Contraseña -->
         <div class="input-container">
             <span class="input-icon">🔒</span>
-            {{ form.password }}
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                <div class="error">
+                    {{ form.password1.errors }}
+                </div>
+            {% endif %}
         </div>
+
+        <!-- Confirmación de contraseña -->
+        <div class="input-container">
+            <span class="input-icon">🔒</span>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                <div class="error">
+                    {{ form.password2.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Botón de registro -->
         <button type="submit" class="auth-button">Registrarse</button>
     </form>
+
     <p class="register-link">¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
 </div>
 {% endblock %}

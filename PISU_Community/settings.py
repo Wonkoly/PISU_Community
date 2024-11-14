@@ -145,8 +145,9 @@ LOGIN_REDIRECT_URL = 'foro'  # Cambia 'home' por la página principal de tu app
 LOGOUT_REDIRECT_URL = '/'
 
 LOGIN_URL = '/auth/login/'
+AUTH_USER_MODEL = 'PISU_Auth.CustomUser'
 
-
+# Register your models here.
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
