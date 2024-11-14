@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'PISU_Anuario/css/PISU_Anuario.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="anuario-container">
+    <h1>Anuario</h1>
+
+    <!-- Formulario para subir foto -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Subir Foto</button>
+    </form>
+
+    <!-- Galería de fotos del anuario -->
+    <div class="gallery">
+        {% for entry in anuario_entries %}
+        <div class="gallery-item">
+            <img src="{{ entry.foto.url }}" alt="Foto del usuario">
+            <div class="overlay">
+                <p>{{ entry.usuario.carrera }}</p>
+            </div>
+            <p class="descripcion">{{ entry.descripcion }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

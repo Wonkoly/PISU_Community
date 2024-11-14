@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PISU_Auth',
-    #'PISU_Anuario',
+    'PISU_Anuario',
     'PISU_Foro',
 ]
 

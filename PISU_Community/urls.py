@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('PISU_Auth.urls')),  # Login como página principal 
     path('foro/', include('PISU_Foro.urls')),
-    #path('anuario/', include('PISU_Anuario.urls')),
+    path('anuario/', include('PISU_Anuario.urls')),
 
 ]
 
