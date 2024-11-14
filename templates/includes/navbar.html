@@ -16,10 +16,15 @@
     <div class="navbar-section navbar-user">
         {% if user.is_authenticated %}
             <div class="navbar-user">
-                <img src="{% static 'images/usuario.png' %}" alt="User icon" class="navbar-user-icon" onclick="toggleDropdown()">
+                <img src="{% if user.foto_perfil %}{{ user.foto_perfil.url }}{% else %}{% static 'images/usuario.png' %}{% endif %}" 
+                     alt="User icon" class="navbar-user-icon" onclick="toggleDropdown()">
+                <div class="navbar-user-info">
+                    <span class="user-fullname">{{ user.full_name }}</span>
+                    <span class="user-role">{{ user.get_rol_display }}</span>
+                </div>
                 <ul id="navbar-dropdown" class="navbar-dropdown">
-                    <li><a href="/perfil">Perfil</a></li>
-                    <li><a href="/configuracion">Configuración</a></li>
+                    <li><a href="{% url 'perfil' %}">Perfil</a></li>
+                    <li><a href="{% url 'configuracion' %}">Configuración</a></li>
                     <li>
                         <form method="post" action="{% url 'logout' %}" style="display: inline;">
                             {% csrf_token %}
@@ -32,5 +37,4 @@
             <a href="{% url 'login' %}" class="navbar-login-button">Inicia Sesión</a>
         {% endif %}
     </div>
-
 </nav>

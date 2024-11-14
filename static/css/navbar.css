@@ -73,6 +73,26 @@
     border-color: #3399ff;
 }
 
+/* Estilos para el nombre de usuario  */
+
+.navbar-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
+    color: #ddd;
+}
+
+.user-fullname {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.user-role {
+    font-size: 12px;
+    color: #aaa;
+}
+
 /* Estilos para el menú desplegable en la imagen de perfil */
 .navbar-user {
     position: relative;
