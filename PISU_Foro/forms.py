@@ -1,11 +1,16 @@
 # PISU_Foro/forms.py
 from django import forms
-from .models import Foro, Comentario
+from .models import Discusion, Publicacion, Comentario
+
+class DiscusionForm(forms.ModelForm):
+    class Meta:
+        model = Discusion
+        fields = ['titulo', 'descripcion']
 
 class PublicacionForm(forms.ModelForm):
     class Meta:
-        model = Foro
-        fields = ['titulo', 'descripcion']
+        model = Publicacion
+        fields = ['contenido']
 
 class ComentarioForm(forms.ModelForm):
     class Meta:

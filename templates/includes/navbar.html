@@ -3,22 +3,34 @@
     <div class="navbar-section">
         <a href="/" class="navbar-logo">P</a>
         <span class="navbar-title">PISU Community</span>
-        <a href="/anuario" class="navbar-link">ANUARIO</a>
-        <a href="/foro" class="navbar-link">FORO</a>
+        <a href="/anuario" class="navbar-link">Anuario</a>
+        <a href="/foro" class="navbar-link">Foro</a>
     </div>
-    <div class="navbar-section">
+
+    {% if user.is_authenticated %}
+    <div class="navbar-section navbar-search-container">
         <input type="text" class="navbar-search" placeholder="Buscar...">
     </div>
+    {% endif %}
+
     <div class="navbar-section navbar-user">
         {% if user.is_authenticated %}
-            <span class="navbar-user-name">{{ user.username }}</span>
-            <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="navbar-logout-button">Logout</button>
-            </form>
+            <div class="navbar-user">
+                <img src="{% static 'images/usuario.png' %}" alt="User icon" class="navbar-user-icon" onclick="toggleDropdown()">
+                <ul id="navbar-dropdown" class="navbar-dropdown">
+                    <li><a href="/perfil">Perfil</a></li>
+                    <li><a href="/configuracion">Configuración</a></li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="navbar-logout-button">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         {% else %}
             <a href="{% url 'login' %}" class="navbar-login-button">Inicia Sesión</a>
         {% endif %}
-        <img src="{% static 'images/usuario.png' %}" alt="User icon" class="navbar-user-icon">
     </div>
+
 </nav>

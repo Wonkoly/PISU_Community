@@ -1,4 +1,8 @@
-+ Ver como haremos lo del foro
-+ Arreglar apariencia del menu de bienvenida
-+ Arreglar varra de navegacion
-+ Hacer Funcionar el login
++ Hacer que Funcione el menu del Navbar
+    - Las busquedas
+    - La configuracion del perfil
+    - La vista de perfil
+    - Modificar la base de datos para que muestre el nombre completo
+    - Mostrar el nombre completo en el Navbar
+    - Mostrar rol y poner en la base de datos lo del rol
++ Foro

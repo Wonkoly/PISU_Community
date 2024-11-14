@@ -76,14 +76,25 @@ WSGI_APPLICATION = 'PISU_Community.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+"""
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'PISUBD',  # Nombre de la base de datos en MySQL
+        'USER': 'root',               # Tu usuario de MySQL
+        'PASSWORD': '12345',          # Tu contraseña de MySQL
+        'HOST': 'localhost',                  # O la dirección IP si es un servidor remoto
+        'PORT': '3306',                       # Puerto de MySQL, normalmente 3306
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -109,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 

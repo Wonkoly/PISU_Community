@@ -7,13 +7,22 @@
 
 {% block content %}
 <div class="auth-container">
+    <div class="auth-header">
+        <img src="{% static 'PISU_Auth/images/user-icon.png' %}" alt="User icon" class="auth-user-icon">
+    </div>
     <h1>Iniciar Sesión</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="auth-start-button">Iniciar Sesión</button>
+        <div class="input-container">
+            <span class="input-icon">👤</span>
+            {{ form.username }}
+        </div>
+        <div class="input-container">
+            <span class="input-icon">🔒</span>
+            {{ form.password }}
+        </div>
+        <button type="submit" class="auth-button">Iniciar Sesión</button>
     </form>
-    <p>¿No tienes cuenta? <a href="{% url 'signup' %}">Regístrate aquí</a></p>
+    <p class="register-link">¿No tienes cuenta? <a href="{% url 'signup' %}">Regístrate aquí</a></p>
 </div>
 {% endblock %}
-

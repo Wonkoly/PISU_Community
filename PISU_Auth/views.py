@@ -23,4 +23,4 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('lista_publicaciones')  # Cambia 'home' por la URL de tu página principal
+        return reverse_lazy('lista_discusiones')  # Cambia 'home' por la URL de tu página principal

@@ -7,11 +7,11 @@
 
 {% block content %}
 <div class="forum-container">
-    <h1>Añadir Publicación</h1>
+    <h1>Crear Nueva Discusión</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="submit-button">Publicar</button>
+        <button type="submit" class="submit-button">Crear Discusión</button>
     </form>
 </div>
 {% endblock %}

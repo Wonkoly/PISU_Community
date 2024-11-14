@@ -1,37 +1,105 @@
+/* PISU_Auth.css */
+
+/* Contenedor principal con fondo y sombra */
 .auth-container {
-    text-align: center;
+    background-color: rgba(26, 26, 26, 0.9); /* Fondo oscuro con transparencia */
+    color: #ddd;
+    width: 100%;
     max-width: 400px;
-    padding: 20px;
-    background-color: #111;
-    border-radius: 8px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    backdrop-filter: blur(8px); /* Efecto de desenfoque en el fondo */
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.auth-header {
+    margin-bottom: 20px;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #333;
-    border-radius: 5px;
+.auth-user-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* Títulos */
+.auth-container h1 {
+    font-size: 24px;
     color: #fff;
-    background-color: #222;
+    margin-bottom: 20px;
 }
 
-.auth-start-button {
-    background-color: #3399ff;
+/* Contenedor de entrada con iconos */
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #bbb;
+    font-size: 18px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 25px;
+    background-color: #333;
+    color: #ddd;
+    outline: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    background-color: #444;
+    box-shadow: 0 0 8px rgba(51, 153, 255, 0.5);
+    border-color: #3399ff;
+}
+
+/* Botón de envío */
+.auth-button {
+    background: linear-gradient(45deg, #3399ff, #1a8cff);
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
 }
 
-.auth-start-button:hover {
-    background-color: #1a8cff;
+.auth-button:hover {
+    background: linear-gradient(45deg, #1a8cff, #007bff);
+}
+
+/* Estilo del enlace para alternar entre login y registro */
+.register-link {
+    font-size: 14px;
+    margin-top: 15px;
+    color: #bbb;
+}
+
+.register-link a {
+    color: #3399ff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #1a8cff;
 }
