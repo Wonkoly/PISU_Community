@@ -24,9 +24,28 @@
         <div class="input-container">
             <label for="foto_perfil">Foto de perfil:</label>
             {{ form.foto_perfil }}
+            {% if user.perfil.foto_perfil %}
+            <div class="profile-photo-preview">
+                <img id="profile-photo-preview" src="{{ user.perfil.foto_perfil.url }}" alt="Foto de perfil actual">
+            </div>
+            {% else %}
+            <div class="profile-photo-preview">
+                <p>Aún no has subido una foto de perfil.</p>
+            </div>
+            {% endif %}
         </div>
 
         <button type="submit" class="profile-button">Actualizar Perfil</button>
     </form>
 </div>
+
+<script>
+document.getElementById("id_foto_perfil").addEventListener("change", function(event) {
+    const [file] = event.target.files;
+    if (file) {
+        const preview = document.getElementById("profile-photo-preview");
+        preview.src = URL.createObjectURL(file);
+    }
+});
+</script>
 {% endblock %}

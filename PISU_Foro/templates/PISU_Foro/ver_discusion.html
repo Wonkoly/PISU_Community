@@ -8,7 +8,7 @@
 {% block content %}
 <div class="forum-container">
     <h1>{{ discusion.titulo }}</h1>
-    <p class="discussion-author">Iniciada por {{ discusion.autor }}</p>
+    <p class="discussion-author">Iniciada por {{ entry.usuario.username }}</p>
     <div class="discussion-content">{{ discusion.contenido }}</div>
 
     <h2>Publicaciones</h2>

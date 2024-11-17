@@ -5,4 +5,9 @@
     - Modificar la base de datos para que muestre el nombre completo
     - Mostrar el nombre completo en el Navbar
     - Mostrar rol y poner en la base de datos lo del rol
-+ Foro
++ 
+
++ Anuario 
+    - Registro de eventos en este caso las fotos
+    - cada foto tiene una descrippcion de lo que se selebra
+    - 

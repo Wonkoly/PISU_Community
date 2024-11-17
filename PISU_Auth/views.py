@@ -3,6 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, UserLoginForm, PerfilForm, ConfiguracionForm
+from .models import CustomUser
 
 # Vista de registro
 def signup_view(request):
@@ -31,7 +32,7 @@ class CustomLoginView(LoginView):
 # Vista para Configuracion del Usuario
 @login_required
 def perfil_view(request):
-    user = request.user
+    user = request.user  # Obtiene directamente el usuario autenticado
     if request.method == 'POST':
         form = PerfilForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
@@ -39,6 +40,7 @@ def perfil_view(request):
             return redirect('perfil')
     else:
         form = PerfilForm(instance=user)
+
     return render(request, 'PISU_Auth/perfil.html', {'form': form})
 
 @login_required

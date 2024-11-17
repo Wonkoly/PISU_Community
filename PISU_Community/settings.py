@@ -140,6 +140,9 @@ STATICFILES_DIRS = [
 # Lugar donde se recopilan todos los archivos estáticos (durante el deploy)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Para producción, si usas collectstatic
 
+# Configuración de medios
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'foro'  # Cambia 'home' por la página principal de tu app
 LOGOUT_REDIRECT_URL = '/'
