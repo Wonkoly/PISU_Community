@@ -1,40 +1,49 @@
 {% load static %}
-<nav class="navbar">
-    <div class="navbar-section">
-        <a href="/" class="navbar-logo">P</a>
-        <span class="navbar-title">PISU Community</span>
-        <a href="/anuario" class="navbar-link">Anuario</a>
-        <a href="/foro" class="navbar-link">Foro</a>
-    </div>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid">
 
-    {% if user.is_authenticated %}
-    <div class="navbar-section navbar-search-container">
-        <input type="text" class="navbar-search" placeholder="Buscar...">
-    </div>
-    {% endif %}
+        <a class="navbar-brand" href="/">PISU Community</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="navbar-section navbar-user">
-        {% if user.is_authenticated %}
-            <div class="navbar-user">
-                <img src="{% if user.foto_perfil %}{{ user.foto_perfil.url }}{% else %}{% static 'images/usuario.png' %}{% endif %}" 
-                     alt="User icon" class="navbar-user-icon" onclick="toggleDropdown()">
-                <div class="navbar-user-info">
-                    <span class="user-fullname">{{ user.full_name }}</span>
-                    <span class="user-role">{{ user.get_rol_display }}</span>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/anuario/">Anuario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/foro/">Foro</a>
+                </li>
+            </ul>
+            
+            <!-- Verificar si el usuario está autenticado -->
+            {% if user.is_authenticated %}
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'images/usuario.png' %}" class="rounded-circle" alt="User" width="30" height="30">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'configuracion' %}">Configuración</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item text-danger">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
-                <ul id="navbar-dropdown" class="navbar-dropdown">
-                    <li><a href="{% url 'perfil' %}">Perfil</a></li>
-                    <li><a href="{% url 'configuracion' %}">Configuración</a></li>
-                    <li>
-                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="navbar-logout-button">Cerrar sesión</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        {% else %}
-            <a href="{% url 'login' %}" class="navbar-login-button">Inicia Sesión</a>
-        {% endif %}
+            {% else %}
+                <!-- Mostrar solo el botón de inicio de sesión si no hay sesión iniciada -->
+                <a href="/auth/login/" class="btn btn-primary">Iniciar sesión</a>
+            {% endif %}
+        </div>
     </div>
 </nav>

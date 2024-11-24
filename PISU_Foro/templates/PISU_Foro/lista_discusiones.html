@@ -6,17 +6,27 @@
 {% endblock %}
 
 {% block content %}
-<div class="forum-container">
-    <h1>Discusiones</h1>
-    <a href="{% url 'crear_discusion' %}" class="create-discussion-button">Crear nueva discusión</a>
-    <ul class="discussion-list">
-        {% for discusion in discusiones %}
-            <li class="discussion-item">
-                <a href="{% url 'ver_discusion' discusion.id %}">{{ discusion.titulo }}</a> por {{ discusion.autor }}
-            </li>
-        {% empty %}
-            <p class="no-discussions">No hay discusiones disponibles.</p>
-        {% endfor %}
-    </ul>
+<div class="container mt-4">
+    <h1 class="text-center">Lista de Discusiones</h1>
+
+    <div class="text-end mb-3">
+        <a href="{% url 'crear_discusion' %}" class="btn btn-success">Crear Nueva Discusión</a>
+    </div>
+
+    {% if discusiones %}
+        <ul class="list-group">
+            {% for discusion in discusiones %}
+                <li class="list-group-item">
+                    <a href="{% url 'ver_discusion' discusion.id %}" class="text-decoration-none">
+                        {{ discusion.titulo }}
+                    </a>
+                    <small>{{ discusion.fecha_creacion|date:"d M Y" }}</small>
+                    <p class="mb-0 text-muted">Iniciada por {{ discusion.creador.username }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted text-center">No hay discusiones disponibles.</p>
+    {% endif %}
 </div>
 {% endblock %}

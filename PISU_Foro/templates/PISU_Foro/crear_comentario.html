@@ -6,12 +6,21 @@
 {% endblock %}
 
 {% block content %}
-<div class="forum-container">
-    <h1>Añadir Comentario</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="submit-button">Comentar</button>
-    </form>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2 class="h5">Agregar Comentario</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-success">Comentar</button>
+                <a href="{% url 'ver_discusion' discusion.id %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

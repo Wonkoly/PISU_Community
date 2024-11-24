@@ -1,41 +1,62 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.core.exceptions import ValidationError
-from .models import CustomUser, Carrera, CentroUniversitario
+from django.utils.text import slugify
+from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
-    full_name = forms.CharField(max_length=255, required=True)
-    carrera = forms.ModelChoiceField(queryset=Carrera.objects.all(), required=False)
-    centro_universitario = forms.ModelChoiceField(queryset=CentroUniversitario.objects.all(), required=False)
-
     class Meta:
         model = CustomUser
-        fields = ('username', 'full_name', 'email', 'carrera', 'centro_universitario', 'password1', 'password2')
+        fields = ['first_name', 'last_name', 'email', 'password1', 'password2']
 
     def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if email:
-            domain = email.split('@')[-1]
-            if domain == 'academicos.udg.mx':
-                self.cleaned_data['rol'] = 'academico'
-            elif domain == 'cuc.udg.mx':
-                self.cleaned_data['rol'] = 'administrativo'
-            elif domain == 'alumnos.udg.mx':
-                self.cleaned_data['rol'] = 'alumno'
-            else:
-                raise ValidationError("El dominio del correo no está permitido. Use un correo con dominio @academicos.udg.mx, @cuc.udg.mx o @alumnos.udg.mx.")
+        email = self.cleaned_data['email']
+        if email.endswith('@academicos.udg.mx'):
+            self.instance.rol = 'academico'
+        elif email.endswith('@cuc.udg.mx'):
+            self.instance.rol = 'administrativo'
+        elif email.endswith('@alumnos.udg.mx'):
+            self.instance.rol = 'alumno'
+        else:
+            raise forms.ValidationError("Correo no válido. Debe usar un dominio institucional.")
         return email
-
+    
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.rol = self.cleaned_data['rol']  # Asignar el rol según el dominio
+        # Generar username único
+        base_username = slugify(f"{user.first_name}{user.last_name[:2]}")
+        username = base_username
+        counter = 1
+        while CustomUser.objects.filter(username=username).exists():
+            username = f"{base_username}{counter}"
+            counter += 1
+        user.username = username
+
         if commit:
             user.save()
         return user
 
 class UserLoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre de usuario', 'class': 'input-field'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class': 'input-field'}))
+    username = forms.CharField(
+        label="Nombre de usuario",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de usuario'})
+    )
+    password = forms.CharField(
+        label="Contraseña",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña'})
+    )
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Nombre de usuario'
+        })
+        self.fields['password'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Contraseña'
+        })
 
 # Configuracion del Usuario
 class PerfilForm(forms.ModelForm):

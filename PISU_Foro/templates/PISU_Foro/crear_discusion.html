@@ -1,17 +1,28 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block head %}
-<link rel="stylesheet" href="{% static 'PISU_Foro/css/PISU_Foro.css' %}">
-{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="forum-container">
-    <h1>Crear Nueva Discusión</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="submit-button">Crear Discusión</button>
-    </form>
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header text-center bg-primary text-white">
+            <h3>Crear Nueva Discusión</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Escribe el título aquí">
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder="Describe la discusión"></textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">Crear Discusión</button>
+                    <a href="{% url 'lista_discusiones' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

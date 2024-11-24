@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'PISU_Auth.middleware.EnsureVerifiedMiddleware',
 ]
 
 ROOT_URLCONF = 'PISU_Community.urls'
@@ -144,11 +145,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Para producción, si usas
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = 'foro'  # Cambia 'home' por la página principal de tu app
+LOGIN_REDIRECT_URL = '/foro'  # Cambia 'home' por la página principal de tu app
 LOGOUT_REDIRECT_URL = '/'
+
 
 LOGIN_URL = '/auth/login/'
 AUTH_USER_MODEL = 'PISU_Auth.CustomUser'
+
+# Django Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pisucommunity@gmail.com'  # Reemplaza con tu correo
+EMAIL_HOST_PASSWORD = 'bvkz uzqo yegi zcbp'  # Genera una contraseña de aplicación si usas Gmail
 
 # Register your models here.
 

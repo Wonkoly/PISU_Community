@@ -6,23 +6,31 @@
 {% endblock %}
 
 {% block content %}
-<div class="forum-container">
-    <h1>{{ discusion.titulo }}</h1>
-    <p class="discussion-author">Iniciada por {{ entry.usuario.username }}</p>
-    <div class="discussion-content">{{ discusion.contenido }}</div>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h1 class="h4">{{ discusion.titulo }}</h1>
+            <p class="mb-0">Iniciada por <strong>{{ discusion.creador.username }}</strong></p>
+        </div>
+        <div class="card-body">
+            <p>{{ discusion.descripcion|truncatechars:100 }}</p>
+        </div>
+    </div>
 
-    <h2>Publicaciones</h2>
-    <ul class="post-list">
+    <h2 class="mt-4">Publicaciones</h2>
+    <ul class="list-group">
         {% for publicacion in publicaciones %}
-            <li class="post-item">
-                <p>{{ publicacion.contenido }}</p>
-                <span class="post-author">- {{ publicacion.autor }}</span>
+            <li class="list-group-item">
+                <p class="mb-1">{{ publicacion.contenido }}</p>
+                <span class="text-muted">- {{ publicacion.autor.username }}</span>
             </li>
         {% empty %}
-            <p class="no-posts">No hay publicaciones en esta discusión.</p>
+            <p class="text-muted text-center">No hay publicaciones en esta discusión.</p>
         {% endfor %}
     </ul>
 
-    <a href="{% url 'crear_publicacion' discusion.id %}" class="create-post-button">Añadir publicación</a>
+    <div class="text-center mt-4">
+        <a href="{% url 'crear_publicacion' discusion.id %}" class="btn btn-primary">Añadir publicación</a>
+    </div>
 </div>
 {% endblock %}

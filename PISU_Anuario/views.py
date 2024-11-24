@@ -5,15 +5,20 @@ from .forms import AnuarioForm
 
 @login_required
 def anuario_view(request):
-    if request.method == 'POST':
-        form = AnuarioForm(request.POST, request.FILES)
-        if form.is_valid():
-            anuario_entry = form.save(commit=False)
-            anuario_entry.usuario = request.user
-            anuario_entry.save()
-            return redirect('anuario')
+    if request.method == "POST":
+        if "entry_id" in request.POST:
+            entry_id = request.POST.get("entry_id")
+            entry = Anuario.objects.get(id=entry_id, usuario=request.user)
+            entry.delete()
+            return redirect("anuario")
+        else:
+            form = AnuarioForm(request.POST, request.FILES)
+            if form.is_valid():
+                anuario_entry = form.save(commit=False)
+                anuario_entry.usuario = request.user
+                anuario_entry.save()
+                return redirect("anuario")
     else:
         form = AnuarioForm()
-
     anuario_entries = Anuario.objects.all()
-    return render(request, 'PISU_Anuario/anuario.html', {'form': form, 'anuario_entries': anuario_entries})
+    return render(request, "PISU_Anuario/anuario.html", {"form": form, "anuario_entries": anuario_entries})

@@ -1,187 +1,36 @@
-/* navbar.css */
-
-.navbar {
-    width: 100%;
-    background-color: #111;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-
-.navbar-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.navbar-logo {
-    background-color: #fff;
-    color: #000;
-    font-weight: bold;
-    font-size: 20px;
-    width: 35px;
-    height: 35px;
+.navbar-brand img {
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    margin-right: 15px;
+    object-fit: cover;
 }
 
-.navbar-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.navbar-link {
-    color: #ddd;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.navbar-link:hover {
-    background-color: #333;
-}
-
-.navbar-search-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.navbar-search {
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: 1px solid #444;
-    outline: none;
-    background-color: #222;
-    color: #ddd;
-    width: 100%;
+.form-control {
     max-width: 200px;
-    transition: box-shadow 0.3s ease, border-color 0.3s;
 }
 
-.navbar-search:focus {
-    box-shadow: 0px 0px 8px rgba(51, 153, 255, 0.6);
-    border-color: #3399ff;
+.dropdown-toggle img {
+    border: 2px solid #ffffff;
 }
 
-/* Estilos para el nombre de usuario      */
-
-.navbar-user-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 10px;
-    color: #ddd;
+.navbar .form-control {
+    border-radius: 20px;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+    transition: all 0.2s ease-in-out;
 }
 
-.user-fullname {
-    font-weight: bold;
-    font-size: 14px;
+.navbar .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.user-role {
-    font-size: 12px;
-    color: #aaa;
+.navbar .btn-outline-success {
+    border-radius: 20px;
+    border: 1px solid #28a745;
+    color: #28a745;
 }
 
-/* Estilos para el menú desplegable en la imagen de perfil */
-.navbar-user {
-    position: relative;
-}
-
-.navbar-user-icon {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: opacity 0.3s;
-}
-
-.navbar-user-icon:hover {
-    opacity: 0.8;
-}
-
-.navbar-dropdown {
-    display: none; /* Cambiado a "none" para ocultarlo inicialmente */
-    position: absolute;
-    right: 0;
-    top: 120%;
-    background-color: #333;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-    min-width: 150px;
-}
-
-.navbar-dropdown li {
-    list-style: none;
-    margin: 0;
-}
-
-.navbar-dropdown li a,
-.navbar-dropdown button {
-    color: #ddd;
-    text-decoration: none;
-    padding: 8px 12px;
-    display: block;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.navbar-dropdown li a:hover,
-.navbar-dropdown button:hover {
-    background-color: #444;
-}
-
-/* Botón de logout estilizado */
-.navbar-logout-button {
-    background-color: transparent;
-    border: none;
-    color: #ddd;
-    font-size: 14px;
-    cursor: pointer;
-    text-align: left;
-    padding: 8px 12px;
-    width: 100%;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.navbar-logout-button:hover {
-    background-color: #444;
-}
-
-/* Mostrar el menú desplegable cuando se hace clic en el icono */
-.navbar-user:hover .navbar-dropdown {
-    display: block;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Botón de inicio de sesión */
-.navbar-login-button {
-    color: #ddd;
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    background-color: #3399ff;
-    transition: background-color 0.3s;
-}
-
-.navbar-login-button:hover {
-    background-color: #1a8cff;
+.navbar .btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
 }

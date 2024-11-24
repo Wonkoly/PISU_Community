@@ -1,61 +1,58 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 {% load static %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'PISU_Anuario/css/PISU_Anuario.css' %}">
+<script src="{% static 'PISU_Anuario/js/PISU_Anuario.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<div class="anuario-container">
-    <h1>Anuario</h1>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Anuario</h1>
 
-    <!-- Botón para abrir el formulario modal -->
-    <div class="add-photo-card" onclick="openModal()">
-        <p>Subir Foto</p>
+    <!-- Botón para subir foto -->
+    <div class="card p-3 mb-4 text-center">
+        <button class="btn btn-primary" onclick="openUploadModal()">
+            <i class="bi bi-cloud-upload-fill"></i> Subir Foto
+        </button>
     </div>
 
-    <!-- Modal para subir foto -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Subir Foto al Anuario</h2>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Subir Foto</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Galería de fotos del anuario -->
-    <div class="gallery">
-        {% for entry in anuario_entries %}
-        <div class="gallery-item">
-            <img src="{{ entry.foto.url }}" alt="Foto del {{ entry.usuario.username }}">
-            <div class="overlay">
-                <p>{{ entry.usuario.carrera }}</p>
+    <!-- Galería -->
+    <div class="row g-4">
+        {% for item in items %}
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{{ item.image.url }}" class="card-img-top" alt="Foto de {{ item.usuario }}" onclick="openImageModal('{{ item.image.url }}', '{{ item.descripcion }}', '{{ item.usuario }}')">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ item.usuario }}</h5>
+                    <p class="card-text">{{ item.descripcion }}</p>
+                    <button class="btn btn-danger btn-sm w-100" onclick="deletePhoto({{ item.id }})">Eliminar</button>
+                </div>
             </div>
-            <p class="descripcion">{{ entry.descripcion }}</p>
         </div>
         {% endfor %}
     </div>
+
+    <!-- Modal para mostrar imagen -->
+    <div id="imageModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalle de Imagen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid" alt="Imagen">
+                    <p id="modalUser" class="mt-3"></p>
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteButton">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<script>
-function openModal() {
-    document.getElementById("uploadModal").style.display = "block";
-}
-
-function closeModal() {
-    document.getElementById("uploadModal").style.display = "none";
-}
-
-// Cerrar el modal al hacer clic fuera de él
-window.onclick = function(event) {
-    var modal = document.getElementById("uploadModal");
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
-
 {% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+c<p>Hola {{ user.first_name }},</p>
+<p>Gracias por registrarte en PISU Community. Por favor, haz clic en el siguiente enlace para verificar tu cuenta:</p>
+<p><a href="{{ verification_link }}">Verificar mi cuenta</a></p>
+<p>Si no creaste esta cuenta, ignora este mensaje.</p>
+{% endblock %}
