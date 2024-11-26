@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.utils.text import slugify
-from .models import CustomUser
+from .models import CustomUser, Carrera
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -62,9 +62,28 @@ class CustomAuthenticationForm(AuthenticationForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'foto_perfil']
+        fields = ['username', 'email', 'centro_universitario', 'carrera', 'foto_perfil']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'centro_universitario': forms.Select(attrs={'class': 'form-control'}),
+            'carrera': forms.Select(attrs={'class': 'form-control'}),
+            'foto_perfil': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.centro_universitario:
+            self.fields['carrera'].queryset = Carrera.objects.filter(
+                centro_universitario=self.instance.centro_universitario
+            )
+        else:
+            self.fields['carrera'].queryset = Carrera.objects.none()
 
 class ConfiguracionForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['anonimo']
+        widgets = {
+            'anonimo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }

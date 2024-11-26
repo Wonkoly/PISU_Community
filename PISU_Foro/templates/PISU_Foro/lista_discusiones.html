@@ -21,7 +21,7 @@
                         {{ discusion.titulo }}
                     </a>
                     <small>{{ discusion.fecha_creacion|date:"d M Y" }}</small>
-                    <p class="mb-0 text-muted">Iniciada por {{ discusion.creador.username }}</p>
+                    <p class="mb-0 text-muted">Iniciada por {{ discusion.get_autor_nombre }}</p>
                 </li>
             {% endfor %}
         </ul>

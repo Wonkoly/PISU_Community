@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'PISU_Anuario/css/PISU_Anuario.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Compartir Foto: {{ foto.titulo }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="receptor">Selecciona un usuario:</label>
+            <select name="receptor_id" class="form-control">
+                {% for usuario in usuarios %}
+                <option value="{{ usuario.id }}">{{ usuario.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-success">Compartir</button>
+            <a href="{% url 'ver_foto' foto.id %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

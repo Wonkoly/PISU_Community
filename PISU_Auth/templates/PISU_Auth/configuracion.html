@@ -6,17 +6,39 @@
 {% endblock %}
 
 {% block content %}
-<div class="config-container">
-    <h1>Configuración</h1>
-    <form method="post">
+<div class="container mt-3" style='max-width: 500px;'>
+    <h1 class="text-center mb-4">Configuración</h1>
+    <form id="configuracion-form" method="post" class="card shadow p-4">
         {% csrf_token %}
-
-        <div class="input-container">
-            <label for="anonimo">Permanecer en modo anónimo:</label>
-            {{ form.anonimo }}
+        
+        <!-- Configuración de privacidad -->
+        <h3 class="mb-3">Privacidad</h3>
+        <div class="form-check form-switch">
+            <input type="checkbox" class="form-check-input" id="id_anonimo" name="anonimo" 
+                {% if user.anonimo %}checked{% endif %}
+                onchange="guardarCambio()">
+            <label class="form-check-label" for="id_anonimo">Modo Anónimo</label>
         </div>
-
-        <button type="submit" class="config-button">Guardar Configuración</button>
     </form>
 </div>
+
+<script>
+    function guardarCambio() {
+        const form = document.getElementById('configuracion-form');
+        const formData = new FormData(form);
+        fetch("{% url 'configuracion' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.error("Error al guardar el cambio.");
+            }
+        })
+        .catch(error => console.error("Error en la solicitud:", error));
+    }
+</script>
 {% endblock %}

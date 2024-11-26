@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'PISU_Anuario/css/PISU_Anuario.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center text-danger">¿Eliminar Foto?</h2>
+    <p class="text-center">Estás a punto de eliminar <strong>{{ foto.titulo }}</strong>. Esta acción no puede deshacerse.</p>
+    <div class="text-center">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'anuario' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

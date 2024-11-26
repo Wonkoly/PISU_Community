@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
@@ -9,7 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from .forms import UserLoginForm, PerfilForm, ConfiguracionForm, CustomUserCreationForm
 from django.contrib import messages
-from .models import CustomUser
+from .models import CustomUser, CentroUniversitario, Carrera
 
 def signup_success(request):
     return render(request, 'PISU_Auth/signup_success.html')
@@ -71,25 +72,39 @@ class CustomLoginView(LoginView):
 # Vista para Configuracion del Usuario
 @login_required
 def perfil_view(request):
-    user = request.user  # Obtiene directamente el usuario autenticado
+    # Obtener el usuario actual
+    user = get_object_or_404(CustomUser, id=request.user.id)
+
     if request.method == 'POST':
+        # Si se presiona el botón para quitar la foto
+        if 'remove_photo' in request.POST:
+            if user.foto_perfil:  # Verifica que haya una foto de perfil
+                user.foto_perfil.delete()
+                user.save()
+            return redirect('perfil')
+
+        # Si se presionó el botón de guardar cambios
         form = PerfilForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('perfil')
+            return redirect('perfil')  # Redirige a la misma página después de guardar
     else:
+        # Prellenar el formulario con los datos del usuario
         form = PerfilForm(instance=user)
 
-    return render(request, 'PISU_Auth/perfil.html', {'form': form})
+    return render(request, 'PISU_Auth/perfil.html', {'form': form, 'user': user})
+
 
 @login_required
 def configuracion_view(request):
     user = request.user
-    if request.method == 'POST':
+    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
         form = ConfiguracionForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('configuracion')
+            return JsonResponse({"status": "success"}, status=200)
+        return JsonResponse({"status": "error", "errors": form.errors}, status=400)
     else:
         form = ConfiguracionForm(instance=user)
+    
     return render(request, 'PISU_Auth/configuracion.html', {'form': form})

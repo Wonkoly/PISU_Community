@@ -1,64 +1,34 @@
-.profile-container {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
+/* Perfil.css */
+form.card {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
     border-radius: 10px;
-    text-align: left;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
+form.card .form-label {
+    font-weight: 500;
+    color: #cdd6f4;
 }
 
-.input-container {
-    margin-bottom: 15px;
+form.card input,
+form.card select {
+    background-color: #282a36;
+    color: #cdd6f4;
+    border: 1px solid #44475a;
 }
 
-.input-container label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+form.card input[disabled] {
+    background-color: #333845;
+    color: #cdd6f4;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #222;
-    color: #fff;
-}
-
-.profile-button {
-    background-color: #007bff;
-    color: white;
+form.card button {
+    background-color: #6272a4;
+    color: #f8f8f2;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    font-size: 16px;
 }
 
-.profile-button:hover {
-    background-color: #0056b3;
-}
-
-.profile-photo-preview {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.profile-photo-preview img {
-    max-width: 100px;
-    border-radius: 50%;
-    margin-top: 10px;
+form.card button:hover {
+    background-color: #44475a;
+    color: #ffffff;
 }

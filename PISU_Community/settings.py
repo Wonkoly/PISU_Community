@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'PISU_Auth.middleware.EnsureVerifiedMiddleware',
 ]
 
 ROOT_URLCONF = 'PISU_Community.urls'

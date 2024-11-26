@@ -1,7 +1,12 @@
 from django import forms
-from .models import Anuario
+from .models import Foto, Comentario
 
-class AnuarioForm(forms.ModelForm):
+class FotoForm(forms.ModelForm):
     class Meta:
-        model = Anuario
-        fields = ['foto', 'descripcion']
+        model = Foto
+        fields = ['titulo', 'imagen', 'descripcion']
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['contenido']

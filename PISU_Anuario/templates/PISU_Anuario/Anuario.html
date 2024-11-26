@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'PISU_Anuario/css/PISU_Anuario.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Anuario</h2>
+    <div class="row">
+        {% for foto in fotos %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{{ foto.imagen.url }}" class="card-img-top" alt="{{ foto.titulo }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ foto.titulo }}</h5>
+                    <p class="text-muted">Autor: {{ foto.autor.username }}</p>
+                    <a href="{% url 'ver_foto' foto.id %}" class="btn btn-primary btn-sm">Ver</a>
+                    {% if request.user == foto.autor %}
+                    <a href="{% url 'editar_foto' foto.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'eliminar_foto' foto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <a href="{% url 'agregar_foto' %}" class="btn btn-success">Agregar Foto</a>
+    </div>
+</div>
+{% endblock %}

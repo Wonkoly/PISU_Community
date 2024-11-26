@@ -6,61 +6,63 @@
 {% endblock %}
 
 {% block content %}
-<div class="auth-container card shadow">
-    <h2 class="card-header text-center">Registro</h2>
-    <form method="post" class="card-body">
-        {% csrf_token %}
+<div class="d-flex justify-content-center align-items-center vh-100"> 
+    <div class="auth-container card shadow w-100" style="max-width: 450px;">
+        <h2 class="card-header text-center">Registro</h2>
+        <form method="post" class="card-body">
+            {% csrf_token %}
 
-        <!-- Mostrar errores generales -->
-        {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {% for error in form.non_field_errors %}
-            <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
+            <!-- Mostrar errores generales -->
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
 
-        <!-- Nombre -->
-        <div class="input-group mb-3">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
-            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="Nombre">
-        </div>
+            <!-- Nombre -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="Nombre">
+            </div>
 
-        <!-- Apellido -->
-        <div class="input-group mb-3">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
-            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Apellido">
-        </div>
+            <!-- Apellido -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Apellido">
+            </div>
 
-        <!-- Correo electrónico -->
-        <div class="input-group mb-3">
-            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Correo electrónico">
-        </div>
+            <!-- Correo electrónico -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Correo electrónico">
+            </div>
 
-        <!-- Contraseña -->
-        <div class="input-group mb-3">
-            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-            <input type="password" id="password1" name="password1" class="form-control" placeholder="Crea una contraseña">
-            <button type="button" class="btn btn-outline-secondary toggle-password">
-                <i class="fas fa-eye" id="togglePassword1Icon"></i>
-            </button>
-        </div>
+            <!-- Contraseña -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" id="password1" name="password1" class="form-control" placeholder="Crea una contraseña">
+                <button type="button" class="btn btn-outline-secondary toggle-password">
+                    <i class="fas fa-eye" id="togglePassword1Icon"></i>
+                </button>
+            </div>
 
-        <!-- Confirmar contraseña -->
-        <div class="input-group mb-3">
-            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-            <input type="password" id="password2" name="password2" class="form-control" placeholder="Repite la contraseña">
-            <button type="button" class="btn btn-outline-secondary toggle-password">
-                <i class="fas fa-eye" id="togglePassword2Icon"></i>
-            </button>
-        </div>
+            <!-- Confirmar contraseña -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" id="password2" name="password2" class="form-control" placeholder="Repite la contraseña">
+                <button type="button" class="btn btn-outline-secondary toggle-password">
+                    <i class="fas fa-eye" id="togglePassword2Icon"></i>
+                </button>
+            </div>
 
-        <!-- Botón de registro -->
-        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-    </form>
+            <!-- Botón de registro -->
+            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+        </form>
 
-    <p class="text-center mt-3">¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+        <p class="text-center mt-3">¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+    </div>
 </div>
 
 <script>
