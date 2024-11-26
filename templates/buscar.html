@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Resultados de búsqueda para "{{ query }}"</h2>
+    
+    <!-- Resultados del Anuario -->
+    <h3>Fotos del Anuario</h3>
+    {% if fotos %}
+        <div class="row">
+            {% for foto in fotos %}
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card">
+                    <img src="{{ foto.imagen.url }}" class="card-img-top" alt="{{ foto.titulo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ foto.titulo }}</h5>
+                        <a href="{% url 'ver_foto' foto.id %}" class="btn btn-primary btn-sm">Ver</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No se encontraron fotos.</p>
+    {% endif %}
+
+    <!-- Resultados del Foro -->
+    <h3>Discusiones del Foro</h3>
+    {% if discusiones %}
+        <ul class="list-group">
+            {% for discusion in discusiones %}
+            <li class="list-group-item">
+                <a href="{% url 'ver_discusion' discusion.id %}">{{ discusion.titulo }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron discusiones.</p>
+    {% endif %}
+</div>
+{% endblock %}

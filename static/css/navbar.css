@@ -1,36 +1,77 @@
-.navbar-brand img {
-    border-radius: 50%;
-    object-fit: cover;
+/* Estilo del navbar */
+.navbar {
+    background-color: #1e1e1e; /* Fondo del navbar */
+    border-bottom: 2px solid #007bff; /* Línea inferior azul */
+    color: #ffffff;
 }
 
-.form-control {
-    max-width: 200px;
+.navbar a.navbar-brand {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
 }
 
-.dropdown-toggle img {
-    border: 2px solid #ffffff;
+.navbar a.navbar-brand:hover {
+    color: #0056b3;
+    text-decoration: none;
 }
 
+/* Estilo para los enlaces del navbar */
+.navbar .nav-link {
+    color: #ffffff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #007bff;
+}
+
+/* Estilo para el buscador */
 .navbar .form-control {
+    background-color: #1e1e1e;
     border-radius: 20px;
     border: 1px solid #ced4da;
+    color: #ffffff;
     box-shadow: none;
     transition: all 0.2s ease-in-out;
 }
 
 .navbar .form-control:focus {
-    border-color: #80bdff;
+    border-color: #007bff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    color: #ffffff;
 }
 
-.navbar .btn-outline-success {
+/* Botones del buscador */
+.navbar .btn {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
     border-radius: 20px;
-    border: 1px solid #28a745;
-    color: #28a745;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.navbar .btn-outline-success:hover {
-    background-color: #28a745;
-    color: white;
-    border-color: #28a745;
+.navbar .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Dropdown */
+.navbar .dropdown-menu {
+    background-color: #1e1e1e;
+    border: 1px solid #007bff;
+    color: #ffffff;
+}
+
+.navbar .dropdown-menu a {
+    color: #ffffff;
+}
+
+.navbar .dropdown-menu a:hover {
+    background-color: #007bff;
+    color: #ffffff;
 }

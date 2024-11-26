@@ -16,17 +16,27 @@
                     <a class="nav-link" href="/foro/">Foro</a>
                 </li>
             </ul>
-            
+
             <!-- Verificar si el usuario está autenticado -->
             {% if user.is_authenticated %}
-                <form class="d-flex me-3">
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                <form class="d-flex me-3" method="GET" action="{% url 'buscar' %}">
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar" name="q">
+                    <button class="btn" type="submit">Buscar</button>
                 </form>
                 <div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{% static 'images/usuario.png' %}" class="rounded-circle" alt="User" width="30" height="30">
-                        <label></label>
+                    <a class="btn btn-secondary dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- Mostrar la foto de perfil si existe, de lo contrario usar imagen predeterminada -->
+                        {% if user.foto_perfil %}
+                            <img src="{{ user.foto_perfil.url }}" class="rounded-circle me-2" alt="User" width="40" height="40">
+                        {% else %}
+                            <img src="{% static 'images/usuario.png' %}" class="rounded-circle me-2" alt="Default User" width="40" height="40">
+                        {% endif %}
+                        <div class="text-start">
+                            <!-- Limitar el nombre completo a 15 caracteres -->
+                            <strong>{{ user.get_full_name|truncatechars:15 }}</strong>
+                            <br>
+                            <span class="text-muted small text-capitalize">{{ user.get_rol_display }}</span>
+                        </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>

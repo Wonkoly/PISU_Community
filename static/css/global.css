@@ -1,24 +1,90 @@
 /* global.css */
-.navbar .form-control {
-    border-radius: 20px;
-    border: 1px solid #ced4da;
-    box-shadow: none;
-    transition: all 0.2s ease-in-out;
+body {
+    background-color: #121212;
+    color: #ffffff;
 }
 
-.navbar .form-control:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+/* Estilo base para todos los botones */
+.btn {
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.navbar .btn-outline-success {
-    border-radius: 20px;
-    border: 1px solid #28a745;
-    color: #28a745;
+/* Hover para botones */
+.btn:hover {
+    background-color: #0056b3; /* Color de hover */
+    color: #ffffff;
+    transform: scale(1.05); /* Ligero aumento al pasar el mouse */
 }
 
-.navbar .btn-outline-success:hover {
+/* Botón deshabilitado */
+.btn:disabled {
+    background-color: #6c757d;
+    color: #d6d6d6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Tamaños de botones */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-size: 1.25rem;
+}
+
+/* Botones de peligro */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+/* Botones de éxito */
+.btn-success {
     background-color: #28a745;
-    color: white;
-    border-color: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Botones de advertencia */
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #121212; /* Texto oscuro para contraste */
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    color: #121212;
+}
+
+/* Botones secundarios (si necesitas alguno más discreto) */
+.btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Texto de botones siempre en blanco por defecto (excepto advertencias) */
+.btn:not(.btn-warning) {
+    color: #ffffff;
 }

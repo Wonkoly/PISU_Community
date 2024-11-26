@@ -10,7 +10,7 @@ urlpatterns = [
     path('auth/', include('PISU_Auth.urls')),  # Login como página principal 
     path('foro/', include('PISU_Foro.urls')),
     path('anuario/', include('PISU_Anuario.urls')),
-
+    path('buscar/', views.buscar, name='buscar'),  # Buscador global
 ]
 
 # Solo para desarrollo (sirve archivos estáticos)
