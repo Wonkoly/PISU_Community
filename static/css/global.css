@@ -7,7 +7,7 @@ body {
 /* Estilo base para todos los botones */
 .btn {
     color: #ffffff;
-    background-color: #007bff;
+    background-color: #3a3a3a;
     border: none;
     border-radius: 0.25rem;
     padding: 0.5rem 1rem;
@@ -18,7 +18,7 @@ body {
 
 /* Hover para botones */
 .btn:hover {
-    background-color: #0056b3; /* Color de hover */
+    background-color: #5a5a5a; /* Color de hover */
     color: #ffffff;
     transform: scale(1.05); /* Ligero aumento al pasar el mouse */
 }

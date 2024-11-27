@@ -3,39 +3,93 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'PISU_Anuario/css/PISU_Anuario.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    textarea {
+        height: 50px; /* Altura reducida para el campo de texto */
+        resize: none; /* Deshabilita el redimensionamiento manual */
+    }
+    .custom-card {
+        max-height: 90vh; /* Altura máxima para evitar que se expanda demasiado */
+        overflow-y: auto; /* Scroll interno si el contenido excede */
+    }
+    .center-container {
+        min-height: 100vh; /* Ocupa toda la altura disponible */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px; /* Agrega margen para evitar que quede pegado */
+    }
+    .btn-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2 class="text-center">{{ foto.titulo }}</h2>
-    <div class="text-center">
-        <img src="{{ foto.imagen.url }}" class="img-fluid mb-3" alt="{{ foto.titulo }}">
-        <p>{{ foto.descripcion }}</p>
-        <p class="text-muted">Autor: {{ foto.autor.username }}</p>
+<div class="center-container">
+    <div class="card shadow w-100 custom-card" style="max-width: 600px;">
+        <!-- Título con botones de edición/eliminación -->
+        <div class="card-header text-white d-flex justify-content-between align-items-center">
+            <h4 class="m-0">{{ foto.titulo }}</h4>
+            {% if request.user == foto.autor %}
+            <div>
+                <a href="{% url 'editar_foto' foto.id %}" class="btn btn-sm btn-warning btn-icon me-2">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminar_foto' foto.id %}" class="btn btn-sm btn-danger btn-icon">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Imagen y descripción -->
+        <div class="card-body text-center">
+            <img src="{{ foto.imagen.url }}" class="img-fluid mb-3" alt="{{ foto.titulo }}">
+            <p>{{ foto.descripcion }}</p>
+            <p class="text-muted small">Por {{ foto.autor.username }}</p>
+        </div>
+
+        <hr class="m-0">
+
+        <!-- Sección de comentarios -->
+        <div class="card-body">
+            <h5 class="mb-3">Comentarios</h5>
+            <ul class="list-group mb-3">
+                {% for comentario in comentarios %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div>
+                        <strong>{{ comentario.autor.username }}</strong>
+                        <p class="mb-0">{{ comentario.contenido }}</p>
+                    </div>
+                    <span class="text-muted small">{{ comentario.fecha_comentario|date:"d M Y, H:i" }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <!-- Formulario para agregar comentarios -->
+            <form method="POST" class="mt-3">
+                {% csrf_token %}
+                <div class="input-group">
+                    <textarea id="contenido" name="contenido" class="form-control" placeholder="Escribe un comentario..."></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Agregar
+                    </button>
+                </div>
+                {% if form.contenido.errors %}
+                <div class="text-danger small mt-1">
+                    {% for error in form.contenido.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </form>
+        </div>
     </div>
-
-    <hr>
-
-    <h4>Comentarios</h4>
-    <ul class="list-group">
-        {% for comentario in comentarios %}
-        <li class="list-group-item">
-            <strong>{{ comentario.autor.username }}</strong>: {{ comentario.contenido }}
-            <span class="text-muted float-right">{{ comentario.fecha_comentario|date:"d M Y, H:i" }}</span>
-        </li>
-        {% endfor %}
-    </ul>
-    <form method="POST" class="mt-3">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Agregar Comentario</button>
-    </form>
-
-    {% if request.user == foto.autor %}
-    <div class="mt-3 text-center">
-        <a href="{% url 'editar_foto' foto.id %}" class="btn btn-warning">Editar</a>
-        <a href="{% url 'eliminar_foto' foto.id %}" class="btn btn-danger">Eliminar</a>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}

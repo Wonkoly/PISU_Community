@@ -30,9 +30,8 @@
             <label class="form-label">Foto de Perfil</label>
             {{ form.foto_perfil }}
             {% if user.foto_perfil %}
-                <div class="mt-3">
+                <div class="text-center mt-3">
                     <img src="{{ user.foto_perfil.url }}" alt="Foto de perfil" class="img-thumbnail" width="150">
-                    <button type="submit" name="remove_photo" class="btn btn-danger mt-2">Quitar Foto</button>
                 </div>
             {% endif %}
         </div>

@@ -3,18 +3,74 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'PISU_Anuario/css/PISU_Anuario.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2 class="text-center mb-4">Editar Foto</h2>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success">Guardar Cambios</button>
-            <a href="{% url 'anuario' %}" class="btn btn-secondary">Cancelar</a>
-        </div>
-    </form>
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="auth-container card shadow w-100" style="max-width: 450px;">
+        <h2 class="card-header text-center">Editar Foto</h2>
+        <form method="POST" enctype="multipart/form-data" class="card-body">
+            {% csrf_token %}
+
+            <!-- Mostrar errores generales -->
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Campo: Título -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                {{ form.titulo }}
+            </div>
+            {% if form.titulo.errors %}
+            <div class="text-danger small">
+                {% for error in form.titulo.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Campo: Imagen -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-image"></i></span>
+                {{ form.imagen }}
+            </div>
+            {% if form.imagen.errors %}
+            <div class="text-danger small">
+                {% for error in form.imagen.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Campo: Descripción -->
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-align-left"></i></span>
+                {{ form.descripcion }}
+            </div>
+            {% if form.descripcion.errors %}
+            <div class="text-danger small">
+                {% for error in form.descripcion.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Botones -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+                <a href="{% url 'anuario' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

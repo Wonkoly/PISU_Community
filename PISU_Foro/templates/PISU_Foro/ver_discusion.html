@@ -10,10 +10,10 @@
     <div class="card">
         <div class="card-header bg-primary text-white">
             <h1 class="h4">{{ discusion.titulo }}</h1>
-            <p class="mb-0">Iniciada por <strong>{{ discusion.creador.username }}</strong></p>
+            <p class="mb-0">Iniciada por <strong>{{ discusion.get_autor_nombre }}</strong></p>
         </div>
         <div class="card-body">
-            <p>{{ discusion.descripcion|truncatechars:100 }}</p>
+        <p>{{ discusion.descripcion|truncatechars:500 }}</p>
         </div>
     </div>
 

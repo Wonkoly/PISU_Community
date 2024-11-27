@@ -1,6 +1,6 @@
 /* Perfil.css */
 form.card {
-    background-color: #1e1e2e;
+    background-color: #1e1e1e;
     color: #cdd6f4;
     border-radius: 10px;
 }
@@ -12,9 +12,9 @@ form.card .form-label {
 
 form.card input,
 form.card select {
-    background-color: #282a36;
+    background-color: #262626;
     color: #cdd6f4;
-    border: 1px solid #44475a;
+    border: 1px solid #333333;
 }
 
 form.card input[disabled] {
@@ -23,12 +23,12 @@ form.card input[disabled] {
 }
 
 form.card button {
-    background-color: #6272a4;
-    color: #f8f8f2;
+    background-color: #3a3a3a;
+    color: #ffffff;
     border: none;
 }
 
 form.card button:hover {
-    background-color: #44475a;
+    background-color: #5a5a5a;
     color: #ffffff;
 }
